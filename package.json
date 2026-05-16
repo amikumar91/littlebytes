@@ -1,0 +1,16 @@
+{
+  "name": "littlebytes",
+  "version": "1.0.0",
+  "description": "A minimal markdown blog",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node watch.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "highlight.js": "^11.10.0",
+    "marked": "^12.0.0",
+    "marked-highlight": "^2.1.4"
+  }
+}
