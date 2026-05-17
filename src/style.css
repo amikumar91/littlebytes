@@ -85,15 +85,49 @@ a { color: inherit; }
   border-bottom: 1px solid var(--border);
 }
 
-.site-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   text-decoration: none;
   color: var(--text);
 }
 
-.site-title span { color: var(--accent); }
+.site-logo-icon {
+  font-size: 1.2rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.site-logo-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.site-logo-text span { color: var(--accent); }
+
+/* ─── Site Nav ───────────────────────────────────────────────────────────── */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-link:hover { color: var(--accent); }
+
+.nav-icon-link {
+  display: flex;
+  align-items: center;
+}
 
 .theme-toggle {
   width: 2rem;
@@ -396,16 +430,144 @@ a.tag:hover { opacity: 0.8; }
 /* ─── Site Footer ────────────────────────────────────────────────────────── */
 .site-footer {
   border-top: 1px solid var(--border);
-  text-align: center;
-  padding: 2rem;
+  padding: 1.5rem 1.5rem;
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+.footer-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-tagline { opacity: 0.75; }
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-link:hover { color: var(--accent); }
+
+/* ─── Author Card ────────────────────────────────────────────────────────── */
+.author-card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--bg-raised);
+  margin-bottom: 2.5rem;
+}
+
+.author-avatar {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.03em;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.author-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.author-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.author-bio {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.author-links {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.author-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.author-link:hover { color: var(--accent); }
+
+/* ─── Reading time ───────────────────────────────────────────────────────── */
+.read-time { white-space: nowrap; }
+
+/* ─── Copy button ────────────────────────────────────────────────────────── */
+.prose pre { position: relative; }
+
+.copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.prose pre:hover .copy-btn { opacity: 1; }
+
+.copy-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   main { padding: 2rem 1rem 4rem; }
   .site-header { padding: 1rem; }
+  .site-nav { gap: 0.65rem; }
+  .nav-link { font-size: 0.8rem; }
   .post-card { padding: 1rem 1.1rem; }
   .post-header-title { font-size: 1.5rem; }
+  .author-card { flex-direction: column; gap: 0.75rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  .footer-tagline { display: none; }
 }
