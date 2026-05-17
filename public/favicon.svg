@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#7c3aed"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="white">Lb</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Light half (full circle base) -->
+  <circle cx="16" cy="16" r="14.5" fill="#fafaf9"/>
+  <!-- Dark right half: arc clockwise from top (16,1.5) to bottom (16,30.5) -->
+  <path d="M16 1.5 A14.5 14.5 0 0 1 16 30.5 Z" fill="#1c1917"/>
+  <!-- Accent border -->
+  <circle cx="16" cy="16" r="14.5" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
 </svg>
