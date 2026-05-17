@@ -149,6 +149,20 @@ function renderAuthorCard() {
     </aside>`;
 }
 
+// ─── About page ──────────────────────────────────────────────────────────────
+function renderAbout() {
+  const body = `
+    <a href="${url('/')}" class="back-link">← Writing</a>
+    ${renderAuthorCard()}`;
+
+  return layout({
+    title: 'About',
+    description: '[PLACEHOLDER: Short bio for meta/OG description]',
+    content: body,
+    pageUrl: `${config.siteUrl}/about/`,
+  });
+}
+
 // ─── RSS 2.0 feed ─────────────────────────────────────────────────────────────
 function generateFeed(posts) {
   const items = posts.map(post => {
@@ -182,6 +196,8 @@ function layout({ title, description = '', content, ogType = 'website', pageUrl 
   const safeTitle = escapeHtml(title);
   const safeDesc  = escapeHtml(description || config.tagline);
   const resolvedUrl = pageUrl || `${config.siteUrl}/`;
+  // Avoid "LittleBytes · LittleBytes" on the homepage
+  const fullTitle = title === config.title ? config.title : `${safeTitle} · ${config.title}`;
 
   const metaDesc = description ? `<meta name="description" content="${escapeHtml(description)}">` : '';
 
@@ -192,7 +208,7 @@ function layout({ title, description = '', content, ogType = 'website', pageUrl 
   <meta property="og:type" content="article" />${ogDate ? `\n  <meta property="article:published_time" content="${ogDate}" />` : ''}
   <meta name="twitter:card" content="summary_large_image" />
   <!-- PLACEHOLDER: <meta name="twitter:creator" content="@yourhandle" /> -->` : `
-  <meta property="og:title" content="${safeTitle}" />
+  <meta property="og:title" content="${fullTitle}" />
   <meta property="og:description" content="${safeDesc}" />
   <meta property="og:url" content="${resolvedUrl}" />
   <meta property="og:type" content="website" />
@@ -210,7 +226,7 @@ function layout({ title, description = '', content, ogType = 'website', pageUrl 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${safeTitle} · ${config.title}</title>
+  <title>${fullTitle}</title>
   ${metaDesc}
   ${ogTags}
   <link rel="alternate" type="application/rss+xml" title="${config.title} RSS" href="${config.siteUrl}/feed.xml">
@@ -235,7 +251,7 @@ function layout({ title, description = '', content, ogType = 'website', pageUrl 
     </a>
     <nav class="site-nav" aria-label="Site navigation">
       <a href="${url('/')}" class="nav-link">Writing</a>
-      <a href="${url('/')}#about" class="nav-link">About</a>
+      <a href="${url('/about/')}" class="nav-link">About</a>
       <a href="${author.github}" class="nav-link nav-icon-link" aria-label="GitHub" target="_blank" rel="noopener">${icons.github}</a>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◑</button>
     </nav>
@@ -312,7 +328,7 @@ function renderIndex(posts) {
       const { title, date, description, tags = [] } = post.frontmatter;
       const mins = readingTime(post.body);
       const tagsHtml = tags.length
-        ? `<div class="tags">${tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`
+        ? `<div class="tags">${tags.map(t => `<a href="${url('/tag/' + slugify(t) + '/')}" class="tag">${t}</a>`).join('')}</div>`
         : '';
       return `
       <li>
@@ -337,7 +353,6 @@ function renderIndex(posts) {
     <div class="site-intro">
       <p class="site-tagline">${config.tagline}</p>
     </div>
-    ${renderAuthorCard()}
     <ul class="post-list">
       ${items}
     </ul>
@@ -409,6 +424,11 @@ function build() {
 
   // Write index
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), renderIndex(posts));
+
+  // Write about page
+  const aboutDir = path.join(DIST_DIR, 'about');
+  ensureDir(aboutDir);
+  fs.writeFileSync(path.join(aboutDir, 'index.html'), renderAbout());
 
   // Write RSS feed
   fs.writeFileSync(path.join(DIST_DIR, 'feed.xml'), generateFeed(posts));
