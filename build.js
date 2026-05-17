@@ -291,7 +291,7 @@ function renderPost(post) {
   const content = marked.parse(post.body);
 
   const tagsHtml = tags.length
-    ? `<div class="tags">${tags.map(t => `<a href="${url('/tag/' + slugify(t) + '/')}" class="tag">${t}</a>`).join('')}</div>`
+    ? `<div class="tags">${tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`
     : '';
 
   const body = `
@@ -328,7 +328,7 @@ function renderIndex(posts) {
       const { title, date, description, tags = [] } = post.frontmatter;
       const mins = readingTime(post.body);
       const tagsHtml = tags.length
-        ? `<div class="tags">${tags.map(t => `<a href="${url('/tag/' + slugify(t) + '/')}" class="tag">${t}</a>`).join('')}</div>`
+        ? `<div class="tags">${tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`
         : '';
       return `
       <li>
