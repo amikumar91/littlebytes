@@ -76,13 +76,16 @@ a { color: inherit; }
 
 /* ─── Site Header ────────────────────────────────────────────────────────── */
 .site-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: var(--wide);
   margin: 0 auto;
-  padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
 }
 
 .site-logo {
@@ -127,6 +130,9 @@ a { color: inherit; }
 .nav-icon-link {
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
 }
 
 .theme-toggle {
@@ -361,6 +367,7 @@ a.tag:hover { opacity: 0.8; }
 
 /* ─── Code blocks ────────────────────────────────────────────────────────── */
 .prose pre {
+  position: relative;
   background: var(--hl-bg);
   border: 1px solid var(--border);
   border-radius: 0.65rem;
@@ -412,6 +419,7 @@ a.tag:hover { opacity: 0.8; }
   border-radius: 0.5rem;
   border: 1px solid var(--border);
   max-width: 100%;
+  margin: 0 auto;
 }
 .prose figcaption {
   text-align: center;
@@ -456,6 +464,9 @@ a.tag:hover { opacity: 0.8; }
 .footer-link {
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.15s;
@@ -536,8 +547,6 @@ a.tag:hover { opacity: 0.8; }
 .read-time { white-space: nowrap; }
 
 /* ─── Copy button ────────────────────────────────────────────────────────── */
-.prose pre { position: relative; }
-
 .copy-btn {
   position: absolute;
   top: 0.6rem;
@@ -562,7 +571,7 @@ a.tag:hover { opacity: 0.8; }
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   main { padding: 2rem 1rem 4rem; }
-  .site-header { padding: 1rem; }
+  .header-inner { padding: 0.85rem 1rem; }
   .site-nav { gap: 0.65rem; }
   .nav-link { font-size: 0.8rem; }
   .post-card { padding: 1rem 1.1rem; }

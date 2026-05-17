@@ -245,16 +245,18 @@ function layout({ title, description = '', content, ogType = 'website', pageUrl 
 </head>
 <body>
   <header class="site-header">
-    <a href="${url('/')}" class="site-logo" aria-label="${config.title} home">
-      <span class="site-logo-icon" aria-hidden="true">◑</span>
-      <span class="site-logo-text">${logoFirst}<span>${logoLast}</span></span>
-    </a>
-    <nav class="site-nav" aria-label="Site navigation">
-      <a href="${url('/')}" class="nav-link">Writing</a>
-      <a href="${url('/about/')}" class="nav-link">About</a>
-      <a href="${author.github}" class="nav-link nav-icon-link" aria-label="GitHub" target="_blank" rel="noopener">${icons.github}</a>
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◑</button>
-    </nav>
+    <div class="header-inner">
+      <a href="${url('/')}" class="site-logo" aria-label="${config.title} home">
+        <span class="site-logo-icon" aria-hidden="true">◑</span>
+        <span class="site-logo-text">${logoFirst}<span>${logoLast}</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Site navigation">
+        <a href="${url('/')}" class="nav-link">Writing</a>
+        <a href="${url('/about/')}" class="nav-link">About</a>
+        <a href="${author.github}" class="nav-link nav-icon-link" aria-label="GitHub" target="_blank" rel="noopener">${icons.github}</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◑</button>
+      </nav>
+    </div>
   </header>
   <main>
     ${content}
