@@ -94,6 +94,8 @@ The alt text becomes the caption:
 ![Architecture overview](./diagram.png)
 ```
 
+![Architecture overview](./diagram.png)
+
 ## Headings auto-generate anchor links
 
 Hover any heading to see the `#` anchor. Link directly to a section like `/blog/getting-started/#code`.
